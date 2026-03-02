@@ -1,33 +1,33 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: one
+  name: ccit-dep
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: swiggy
+      app: ccit
   template:
     metadata:
       labels:
-        app: swiggy
+        app: ccit
     spec:
       containers:
       - name: cont-1
-        image: nginx
+        image: cloudintelugu/ccitimage:v3
         ports:
         - containerPort: 80
         env:
         - name: TITLE
-          value: "NGINX APP1"
+          value: "CCIT"
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: nginx
+  name: ccit-svc
 spec:
   type: NodePort
   ports:
   - port: 80
   selector:
-    app: swiggy
+    app: ccit
