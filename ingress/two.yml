@@ -1,33 +1,33 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ccit-dep2
+  name: two
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: ccit
+      app: zomato
   template:
     metadata:
       labels:
-        app: ccit
+        app: zomato
     spec:
       containers:
       - name: cont-2
-        image: cloudintelugu/ccitimage:v4
+        image: httpd
         ports:
         - containerPort: 80
         env:
         - name: TITLE
-          value: "ccit v4"
+          value: "APACHE APP2"
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: ccit-svc2
+  name: httpd
 spec:
   type: NodePort
   ports:
   - port: 80
   selector:
-    app: ccit
+    app: zomato
